@@ -5,7 +5,7 @@ https://www.notion.so/Tech-Design-for-API-Gateway-70b9ec603f56424d80603b394bd3c3
 ## Current Proof of Concept:
 
 ### HERTZ
-**Before you run:** Ensure you have installed and setup hertz and golang. 
+**Before you run:** Ensure you have installed and setup hertz and golang. <br>
 **Step 1:** In your terminal cd into 'hertz' directory
 **Step 2:** enter: go run main.go
 **Step 3:** Open a new terminal and enter: curl http://127.0.0.1:8888/ping. 
