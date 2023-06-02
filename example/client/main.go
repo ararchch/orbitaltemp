@@ -16,7 +16,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	req := &api.Request{Message: "nabei"}
+	req := &api.Request{Message: "hello"}
 	resp, err := client.Echo(context.Background(), req)
 	if err != nil {
 		log.Fatal(err)
