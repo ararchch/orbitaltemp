@@ -23,36 +23,37 @@ type ResponseBody struct {
 }
 
 func main() {
-	//initialized with the default server
+	//http://127.0.0.1:8888/
+
 	h := server.Default()
 
-	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
-		//send a JSON response with an HTTP status code of 200 (OK)
-		//response body is a JSON object with a single key-value pair,
-		//where the key is "message" and the value is "pong".
-		ctx.JSON(consts.StatusOK, utils.H{"message": "pong"})
-	})
+	//h := server.Default(server.WithHandleMethodNotAllowed(true))
 
-	h.POST("/greet", func(c context.Context, ctx *app.RequestContext) {
-		body, err := ioutil.ReadAll(ctx.Request().Body())
-		if err != nil {
-			ctx.JSON(consts.StatusBadRequest, ResponseBody{Message: "Invalid request body"})
-			return
-		}
+	//h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
 
-		var requestBody RequestBody
-		err = json.Unmarshal(body, &requestBody)
-		if err != nil {
-			ctx.JSON(consts.StatusBadRequest, ResponseBody{Message: "Failed to decode request body"})
-			return
-		}
+	//h.StaticFS("/", &app.FS{Root: "./", GenerateIndexPages: true})
 
-		responseBody := ResponseBody{
-			Message: fmt.Sprintf("Hello, %s!", requestBody.Name),
-		}
+	//Get request with non JSON body
+	// h.GET("/get", func(ctx context.Context, c *app.RequestContext) {
+	// 	c.String(consts.StatusOK, "get")
+	// })
 
-		ctx.JSON(consts.StatusOK, responseBody)
-	})
+	//Get request with Json body
+	// h.GET("/get", func(c context.Context, ctx *app.RequestContext) {
+	// 	ctx.JSON(consts.StatusOK, utils.H{"message": "pongmain1"})
+	// })
+
+	//register(h)
+
+	// h.POST("/post", func(c context.Context, ctx *app.RequestContext) {
+	// 	ctx.JSON(consts.StatusOK, utils.H{"message": "post"})
+	// })
+	// h.PUT("/put", func(c context.Context, ctx *app.RequestContext) {
+	// 	ctx.JSON(consts.StatusOK, utils.H{"message": "put"})
+	// })
+	// h.DELETE("/delete", func(c context.Context, ctx *app.RequestContext) {
+	// 	ctx.JSON(consts.StatusOK, utils.H{"message": "delete"})
+	// })
 
 	//start the server and listen for incoming requests.
 	//blocks execution of the main goroutine until the server is shut down.
