@@ -1,4 +1,4 @@
-﻿# README: CloudWeGo API Gateway
+# README: CloudWeGo API Gateway
 ## Tech Design:
 #### https://drive.google.com/file/d/12YdO1ZMxGWcnbM7dVHZ8ZAMn8eJMTPbL/view?usp=drive_link 
 <hr>
