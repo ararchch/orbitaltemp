@@ -1,20 +1,39 @@
-﻿# README
+﻿# README: CloudWeGo API Gateway
 ## Tech Design:
-https://www.notion.so/Tech-Design-for-API-Gateway-70b9ec603f56424d80603b394bd3c3ec 
----------------------------------------------------------------------------------------
-## Current Proof of Concept:
+#### https://drive.google.com/file/d/12YdO1ZMxGWcnbM7dVHZ8ZAMn8eJMTPbL/view?usp=drive_link 
+<hr>
+## Current Proof of Concept Description:
+### Basic echo functionality which accepts a JSON request containing a name and email address, and returns "Hello, [Name]" <br>
+**How it works** <br>
+1. Client sends HTTP request with a JSON body with a "name" and "email" attribute.
+2. Hertz server processes reqeuest and logs the "name" and "email" values.
+3. In the same file, a kitex client is initiated which calls the echo function on the Kitex server with the "name" value. 
+4. Kitex server accepts request and generates response: 'Hello, [Name]', returning it to the client. 
+5. Using Hertz, the kitex response is encoded in a JSON body and returned to the original client. 
+<hr>
+## How to test the Proof of Concept:
 
-### HERTZ
-**Before you run:** Ensure you have installed and setup hertz and golang. <br>
-**Step 1:** In your terminal cd into 'hertz' directory<br>
-**Step 2:** enter: go run main.go<br>
-**Step 3:** Open a new terminal and enter: curl http://127.0.0.1:8888/ping. <br>
-**Response:** You should recieve a 200 (success) response and the message 'pong'. <br>
+### Before you run:
+1. Ensure you have installed and setup Hertz, Kitex, ThriftGo and Go. <br>
+2. Install and setup Postman (or any similar service)
 
-### KITEX
-**Before you run:** Ensure you have installed and setup kitex, thriftgo, and golang. <br>
-**Step 1:** In your terminal cd into 'example' directory<br>
-**Step 2:** enter: go run main.go handler.go<br>
-**Step 3:** The server should be up and running. Then cd into the 'client' directory.<br> 
-**Step 4:** enter: go run main.go <br>
-**Response:** You should recieve a response with the message 'hello'. You can edit the message in the main.go file (inside client dir) and resend. The response will echo your message. <br>
+### Running the POC:
+
+#### 1. Starting Hertz and Kitex servers
+**Step 1.1:** In your terminal cd into 'example' directory<br>
+**Step 1.2:** enter and execute: go run main.go handler.go<br>
+**Step 1.3:** Open a new terminal and cd into the 'hz-server' directory<br>
+**Step 1.4:** enter and execute: go run hz.go _(or go run .)_ <br>
+
+#### 2. Sending HTTP requests and receiving responses on Postman
+**Step 2.1:** Open postman and create a new 'POST' request<br>
+              Request Address: http://localhost:8080/endpoint <br>
+              Request Body: ```{"name": "ArRay", "email": "ArRay@example.com"}``` _(you can change the value of name and email as you please)_ <br>
+**Step 2.2:** Send the request. you should receive the following response:<br>
+              ```
+                {
+                    "kitexResponse": {
+                        "message": "Hello, ArRay"
+                    }
+                }
+              ```
