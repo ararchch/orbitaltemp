@@ -31,7 +31,7 @@ Basic echo functionality which accepts a JSON request containing a name and emai
               Request Body: ```{"name": "ArRay", "email": "ArRay@example.com"}``` _(you can change the value of name and email as you please)_ <br>
 **Step 2.2:** Send the request. you should receive the following response:<br>
               ```
-                {
+                { <br>
                     "kitexResponse": {
                         "message": "Hello, ArRay"
                     }
