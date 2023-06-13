@@ -6,7 +6,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -14,46 +13,53 @@ import (
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 )
 
-type RequestBody struct {
-	Name string `json:"name"`
+//for testing 
+type Person struct {
+    Name  string `json:"name"`
+    Email string `json:"email"`
 }
 
-type ResponseBody struct {
-	Message string `json:"message"`
-}
 
 func main() {
 	//http://127.0.0.1:8888/
 
 	h := server.Default()
 
-	//h := server.Default(server.WithHandleMethodNotAllowed(true))
-
-	//h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
-
-	//h.StaticFS("/", &app.FS{Root: "./", GenerateIndexPages: true})
-
-	//Get request with non JSON body
-	// h.GET("/get", func(ctx context.Context, c *app.RequestContext) {
-	// 	c.String(consts.StatusOK, "get")
-	// })
-
 	//Get request with Json body
-	// h.GET("/get", func(c context.Context, ctx *app.RequestContext) {
-	// 	ctx.JSON(consts.StatusOK, utils.H{"message": "pongmain1"})
-	// })
+	h.GET("/get", func(c context.Context, ctx *app.RequestContext) {
+		ctx.JSON(consts.StatusOK, utils.H{"message": "pongmain1"})
+	})
 
-	//register(h)
+	h.POST("/post", func(c context.Context, ctx *app.RequestContext) {
+		ctx.JSON(consts.StatusOK, utils.H{"message": "post"})
+	})
 
-	// h.POST("/post", func(c context.Context, ctx *app.RequestContext) {
-	// 	ctx.JSON(consts.StatusOK, utils.H{"message": "post"})
-	// })
-	// h.PUT("/put", func(c context.Context, ctx *app.RequestContext) {
-	// 	ctx.JSON(consts.StatusOK, utils.H{"message": "put"})
-	// })
-	// h.DELETE("/delete", func(c context.Context, ctx *app.RequestContext) {
-	// 	ctx.JSON(consts.StatusOK, utils.H{"message": "delete"})
-	// })
+	h.POST("/endpoint", func(c context.Context, ctx *app.RequestContext) {
+		
+		requestBody, err := ctx.Body()
+		if err != nil {
+			// Handle error
+			fmt.Println("Error")
+			return
+		}
+	
+		// Process the requestBody as needed
+	
+		// Send the received data as a JSON response
+		ctx.JSON(consts.StatusOK, requestBody)
+
+		//jsonStr := `{"name": "ArRay", "email": "ArRay@example.com"}`
+
+		var person Person
+		err = json.Unmarshal(requestBody, &person)
+		if err != nil {
+			// Handle error
+			fmt.Println("Error")
+		}
+	
+		fmt.Println("Name:", person.Name)
+		fmt.Println("Email:", person.Email)
+	})
 
 	//start the server and listen for incoming requests.
 	//blocks execution of the main goroutine until the server is shut down.

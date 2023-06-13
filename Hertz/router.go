@@ -3,8 +3,6 @@
 package main
 
 import (
-	"fmt"
-
 	handler "HongRay.com/mymodule/biz/handler"
 	"github.com/cloudwego/hertz/pkg/app/server"
 )
