@@ -9,7 +9,7 @@ import (
 
 // customizeRegister registers customize routers.
 func customizedRegister(r *server.Hertz) {
-	r.GET("/ping", handler.Ping)
+	r.GET("/get", handler.Ping)
 
-	// your code ...
+	r.POST("/post", handler.Post)
 }
