@@ -3,7 +3,7 @@
 #### https://drive.google.com/file/d/12YdO1ZMxGWcnbM7dVHZ8ZAMn8eJMTPbL/view?usp=drive_link 
 
 ## Current Proof of Concept Description: <br>
-### Basic echo functionality which accepts a JSON request containing a name and email address, and returns "Hello, [Name]" <br>
+Basic echo functionality which accepts a JSON request containing a name and email address, and returns "Hello, [Name]" <br>
 **How it works** <br>
 1. Client sends HTTP request with a JSON body with a "name" and "email" attribute. <br>
 2. Hertz server processes reqeuest and logs the "name" and "email" values. <br>
