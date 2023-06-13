@@ -10,5 +10,6 @@ type EchoImpl struct{}
 
 // Echo implements the EchoImpl interface.
 func (s *EchoImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
-	return &api.Response{Message: req.Message}, nil
+	// returns 'Hello followed by the incoming req message
+	return &api.Response{Message: "Hello, " + req.Message}, nil
 }

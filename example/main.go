@@ -5,6 +5,7 @@ import (
 	"log"
 )
 
+// setup new kitex server
 func main() {
 	svr := api.NewServer(new(EchoImpl))
 
