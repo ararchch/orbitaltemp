@@ -2,14 +2,14 @@
 ## Tech Design:
 #### https://drive.google.com/file/d/12YdO1ZMxGWcnbM7dVHZ8ZAMn8eJMTPbL/view?usp=drive_link 
 <hr>
-## Current Proof of Concept Description:
+## Current Proof of Concept Description: <br>
 ### Basic echo functionality which accepts a JSON request containing a name and email address, and returns "Hello, [Name]" <br>
 **How it works** <br>
-1. Client sends HTTP request with a JSON body with a "name" and "email" attribute.
-2. Hertz server processes reqeuest and logs the "name" and "email" values.
-3. In the same file, a kitex client is initiated which calls the echo function on the Kitex server with the "name" value. 
-4. Kitex server accepts request and generates response: 'Hello, [Name]', returning it to the client. 
-5. Using Hertz, the kitex response is encoded in a JSON body and returned to the original client. 
+1. Client sends HTTP request with a JSON body with a "name" and "email" attribute. <br>
+2. Hertz server processes reqeuest and logs the "name" and "email" values. <br>
+3. In the same file, a kitex client is initiated which calls the echo function on the Kitex server with the "name" value. <br>
+4. Kitex server accepts request and generates response: 'Hello, [Name]', returning it to the client. <br>
+5. Using Hertz, the kitex response is encoded in a JSON body and returned to the original client. <br>
 <hr>
 ## How to test the Proof of Concept:
 
